@@ -1,0 +1,1 @@
+* Convert input.rtf to input.txt files
