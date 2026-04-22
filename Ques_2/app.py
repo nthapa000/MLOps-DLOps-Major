@@ -17,7 +17,11 @@ PLOTS_DIR    = "Question2"
 DEVICE       = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # Set Streamlit page config
-st.set_page_config(page_title="CityScape Segmentation", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(
+    page_title="CityScape Semantic Segmentation - MLOps Application",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # 23 visually distinct HSV colors for segmentation classes
 CLASS_COLORS = np.array(
@@ -121,7 +125,12 @@ def load_gt_mask(filename):
     mask_idx = np.clip(np.max(mask_rs, axis=-1), 0, N_CLASSES - 1)
     return mask_idx, mask_path
 
-# ── Streamlit App Navigation ──────────────────────────────────────────────────
+# ── Header & Navigation ───────────────────────────────────────────────────────
+st.markdown("<h1 style='text-align: center; color: #0066cc;'>🔍 Semantic Image Segmentation - MLOps Application</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #666;'>CityScape Dataset | UNet Model | Real-time Inference</p>", unsafe_allow_html=True)
+st.divider()
+
+# ── Streamlit App Navigation ──────────────────────────────────────────────────────
 page = st.sidebar.radio("📊 Navigation", ["📈 Page 1: Training Metrics", "🎨 Page 2: Segmentation Demo"])
 
 # ══════════════════════════════════════════════════════════════════════════════
